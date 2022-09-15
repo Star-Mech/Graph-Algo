@@ -56,3 +56,31 @@ def traversal_depth_first_recursively(graph, current):
 
 traversal_depth_first_recursively(graph, 'a')
 print()
+
+
+g1 = {
+    'f':['g','i'],
+    'g':['h'],
+    'h':[],
+    'i':['g', 'k'],
+    'j':['i'],
+    'k':[],
+}
+def has_path_depth_recursive(graph, src, dst) -> bool:
+    if src == dst:
+        return True
+
+    for neigbor in graph.get(src):
+        r = has_path_depth_recursive(g1, neigbor, dst)
+        if r: # if path found
+            return r
+
+    return False
+
+print('<---Has Path Recursively ------>')
+print(has_path_depth_recursive(g1, 'f', 'k'))
+print(has_path_depth_recursive(g1, 'f', 'h'))
+print(has_path_depth_recursive(g1, 'g', 'i'))
+print(has_path_depth_recursive(g1, 'j', 'k'))
+print(has_path_depth_recursive(g1, 'j', 'h'))
+print(has_path_depth_recursive(g1, 'j', 'f'))
