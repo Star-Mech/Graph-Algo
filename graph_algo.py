@@ -84,3 +84,25 @@ print(has_path_depth_recursive(g1, 'g', 'i'))
 print(has_path_depth_recursive(g1, 'j', 'k'))
 print(has_path_depth_recursive(g1, 'j', 'h'))
 print(has_path_depth_recursive(g1, 'j', 'f'))
+
+# Now give the edges, convert it into undirected graph where we can traverse both forward and backward
+e1 = [
+    ['i', 'j'],
+    ['k', 'i'],
+    ['m', 'k'],
+    ['k', 'l'],
+    ['o', 'n'],
+]
+def edge_to_graph(edges: list):
+    graph = {}
+    for edge in edges:
+        for node_index in range(len(edge)):
+            if edge[node_index] not in graph:
+                graph[edge[node_index]] = []
+            # print([edge[i] for i in range(node_index + 1, len(edge))])
+            for i in range(len(edge)):
+                if edge[i] != edge[node_index]:
+                    graph[edge[node_index]].append(edge[i])
+
+    return graph
+print(edge_to_graph(e1))
